@@ -43,5 +43,50 @@ function promptUser(map) {
   map.set('special', special)
 
   alert(`You picked ${map.get('passwordLength')} characters, ${map.get('lowerCase')} for lowercase.`)
+  generatePassword(map)
   return
+}
+
+function generatePassword(map) {
+  var passwordResult = ""
+
+  var passwordLength = map.get('passwordLength')
+
+  var setLowerCase = "abcdefghijklmnopqrstuvwxyz"
+  var setUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  var setNumeric = "0123456789"
+  var setSpecial = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
+  var setWholePassword = ""
+
+  if (map.get('lowerCase')) {
+    setWholePassword += setLowerCase
+  }
+
+  if (map.get('upperCase')) {
+    setWholePassword += setUpperCase
+  }
+
+  if (map.get('numeric')) {
+    setWholePassword += setNumeric
+  }
+
+  if (map.get('special')) {
+    setWholePassword += setSpecial
+  }
+  
+  if(setWholePassword ==""){
+    alert('No character types selected. Please restart.')
+    return
+  }
+
+  console.log(setWholePassword)
+
+  for (let index = 0; index < passwordLength; index++) {
+    passwordResult += setWholePassword.charAt(Math.floor(Math.random() * setWholePassword.length))
+    console.log(passwordResult)
+  }
+
+  console.log("end password is " + passwordResult)
+  return passwordResult
 }
