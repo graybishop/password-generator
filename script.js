@@ -42,7 +42,7 @@ function promptUser(map) {
   map.set('upperCase', upperCase)
   var numeric = confirm('Do you want numeric characters?')
   map.set('numeric', numeric)
-  var special = confirm('Do you want special letters?')
+  var special = confirm('Do you want special characters?')
   map.set('special', special)
 
   writePassword()
@@ -86,7 +86,6 @@ function generatePassword(map) {
 
   for (let index = 0; index < passwordLength; index++) {
     passwordResult += setWholePassword.charAt(Math.floor(Math.random() * setWholePassword.length))
-    console.log(passwordResult)
   }
 
   console.log("end password is " + passwordResult)
