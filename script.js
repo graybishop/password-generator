@@ -12,7 +12,10 @@ function writePassword() {
   var password = generatePassword(passConfig);
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  if (password != null) {
+    passwordText.value = password;
+  }
+  
   return;
 }
 
@@ -42,8 +45,7 @@ function promptUser(map) {
   var special = confirm('Do you want special letters?')
   map.set('special', special)
 
-  alert(`You picked ${map.get('passwordLength')} characters, ${map.get('lowerCase')} for lowercase.`)
-  generatePassword(map)
+  writePassword()
   return
 }
 
@@ -77,7 +79,7 @@ function generatePassword(map) {
   
   if(setWholePassword ==""){
     alert('No character types selected. Please restart.')
-    return
+    return null
   }
 
   console.log(setWholePassword)
