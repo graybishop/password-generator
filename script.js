@@ -1,5 +1,7 @@
-// Assignment Code
+//HTML Button on main page
 var generateBtn = document.querySelector("#generate");
+
+//Map to hold user preferences. 
 var passConfig = new Map();
 
 passConfig.set('passwordLength', 0);
@@ -8,6 +10,8 @@ passConfig.set('upperCase', false);
 passConfig.set('numeric', false);
 passConfig.set('special', false);
 
+
+//writes password to display text area
 function writePassword() {
   var password = generatePassword(passConfig);
   var passwordText = document.querySelector("#password");
@@ -19,16 +23,18 @@ function writePassword() {
   return;
 }
 
+//binds click listener to button and start user prompts.
 generateBtn.addEventListener("click", promptUser.bind(null, passConfig));
 
-
+//Prompts user for length and configuration of password through HTML Prompts. Edits map to save configuration.  
 function promptUser(map) {
   console.log('prompt user started')
   var passwordLength = prompt("How long would you like the password to be? (min 8 characters, max 128 characters) Please enter a number:", 24)
 
+  //checks if input is number, checks if number is between 8 and 129
   if (passwordLength == null) {
     return
-  } else if(passwordLength > 7 && passwordLength < 129){
+  } else if(passwordLength > 7 && passwordLength <= 128){
     map.set('passwordLength', passwordLength)
   } else {
     alert("Password length must be entered as a number between 8 and 128 (inclusive)")
@@ -36,19 +42,20 @@ function promptUser(map) {
     return
   }
 
-  var lowerCase = confirm('Do you want lowercase letters?')
+  var lowerCase = confirm('Do you want lowercase letters? (Select \'Ok\' for Yes)')
   map.set('lowerCase', lowerCase)
-  var upperCase = confirm('Do you want uppercase letters?')
+  var upperCase = confirm('Do you want uppercase letters? (Select \'Ok\' for Yes)')
   map.set('upperCase', upperCase)
-  var numeric = confirm('Do you want numeric characters?')
+  var numeric = confirm('Do you want numeric characters? (Select \'Ok\' for Yes)')
   map.set('numeric', numeric)
-  var special = confirm('Do you want special characters?')
+  var special = confirm('Do you want special characters? (Select \'Ok\' for Yes)')
   map.set('special', special)
 
   writePassword()
   return
 }
 
+// reads map configuration, generates new string based on user input. 
 function generatePassword(map) {
   var passwordResult = ""
 
@@ -88,6 +95,6 @@ function generatePassword(map) {
     passwordResult += setWholePassword.charAt(Math.floor(Math.random() * setWholePassword.length))
   }
 
-  console.log("end password is " + passwordResult)
+  console.log("Password is " + passwordResult)
   return passwordResult
 }
