@@ -4,11 +4,11 @@ var generateBtn = document.querySelector("#generate");
 //Map to hold user preferences. 
 var passConfig = new Map();
 
-passConfig.set('passwordLength', 0);
-passConfig.set('lowerCase', false);
-passConfig.set('upperCase', false);
-passConfig.set('numeric', false);
-passConfig.set('special', false);
+passConfig.set('passwordLength', 0)
+  .set('lowerCase', false)
+  .set('upperCase', false)
+  .set('numeric', false)
+  .set('special', false);
 
 
 //writes password to display text area
@@ -19,7 +19,7 @@ function writePassword() {
   if (password != null) {
     passwordText.value = password;
   }
-  
+
   return;
 }
 
@@ -34,7 +34,7 @@ function promptUser(map) {
   //checks if input is number, checks if number is between 8 and 129
   if (passwordLength == null) {
     return
-  } else if(passwordLength > 7 && passwordLength <= 128){
+  } else if (passwordLength > 7 && passwordLength <= 128) {
     map.set('passwordLength', passwordLength)
   } else {
     alert("Password length must be entered as a number between 8 and 128 (inclusive)")
@@ -83,8 +83,8 @@ function generatePassword(map) {
   if (map.get('special')) {
     setWholePassword += setSpecial
   }
-  
-  if(setWholePassword ==""){
+
+  if (setWholePassword == "") {
     alert('No character types selected. Please restart.')
     return null
   }
