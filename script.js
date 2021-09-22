@@ -13,6 +13,7 @@ passConfig.set('passwordLength', 0)
 
 //writes password to display text area
 function writePassword() {
+  
   var password = generatePassword(passConfig);
   var passwordText = document.querySelector("#password");
 
@@ -42,6 +43,7 @@ function promptUser(map) {
     return
   }
 
+  //Prompts for user input
   var lowerCase = confirm('Do you want lowercase letters? (Select \'Ok\' for Yes)')
   map.set('lowerCase', lowerCase)
   var upperCase = confirm('Do you want uppercase letters? (Select \'Ok\' for Yes)')
@@ -51,6 +53,7 @@ function promptUser(map) {
   var special = confirm('Do you want special characters? (Select \'Ok\' for Yes)')
   map.set('special', special)
 
+  //calls the text update function
   writePassword()
   return
 }
